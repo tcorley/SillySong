@@ -25,6 +25,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func displayLyrics(_ sender: Any) {
+        guard let name = nameField.text, !name.isEmpty else {
+            return // return only if the user didn't enter a name
+        }
         lyricsView.text = lyricsForName(lyricsTemplate: bananaFanaTemplate, fullName: nameField.text!)
     }
 
@@ -44,6 +47,9 @@ extension ViewController: UITextFieldDelegate {
 // MARK: - Lyrics Generator
 func indexOfFirstVowel(_ name: String) -> Int {
     let name = name.folding(options: .diacriticInsensitive, locale: .current)
+    guard name.rangeOfCharacter(from: CharacterSet(charactersIn: "aeiouy")) != nil else {
+        return -1
+    }
     for (index, letter) in name.characters.enumerated() {
         if "aeiouy".characters.contains(letter) {
             return index
@@ -56,8 +62,13 @@ func indexOfFirstVowel(_ name: String) -> Int {
 func shortNameFromName(_ name: String) -> String {
     if !name.isEmpty {
         let name = name.lowercased()
-        let index = name.index(name.startIndex, offsetBy: indexOfFirstVowel(name))
-        return name.substring(from: index)
+        let offset = indexOfFirstVowel(name)
+        if offset > -1 {
+            let index = name.index(name.startIndex, offsetBy: offset)
+            return name.substring(from: index)
+        } else {
+            return name
+        }
     } else {
         return ""
     }

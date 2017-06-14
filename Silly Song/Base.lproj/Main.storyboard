@@ -47,7 +47,7 @@
                                     <action selector="reset:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="lZb-pU-4EM"/>
                                 </connections>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FR9-zE-Fjr">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FR9-zE-Fjr">
                                 <rect key="frame" x="46" y="217" width="282" height="293"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
